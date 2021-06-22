@@ -5,20 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "bbc.co.uk",
+      "name": "Launch Package",
       "type": "go",
       "request": "launch",
       "mode": "auto",
-      "program": "${workspaceFolder}",
-      "args": ["https://bbc.co.uk"]
-    },
-    {
-      "name": "big.txt",
-      "type": "go",
-      "request": "launch",
-      "mode": "auto",
-      "program": "${workspaceFolder}",
-      "args": ["https://norvig.com/big.txt"]
+      "program": "${workspaceFolder}"
     }
   ]
 }
