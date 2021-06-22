@@ -15,7 +15,7 @@ type Parser interface {
 
 func NormaliseString(s string) string {
 	s = strings.ToLower(s)
-	re := regexp.MustCompile("[^a-z]")
+	re := regexp.MustCompile("[^a-z'_-]")
 	return re.ReplaceAllString(s, "")
 }
 
