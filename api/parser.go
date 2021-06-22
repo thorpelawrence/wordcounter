@@ -43,10 +43,6 @@ func (parser *PlainTextParser) GetWordCounts() map[string]int {
 	return counts
 }
 
-type HTMLParser struct {
-	TextNodes []string
-}
-
 func GetTextNodes(tokens *html.Tokenizer) (textNodes []string) {
 	textNodes = make([]string, 0)
 	tagsContainingText := []string{
@@ -74,6 +70,10 @@ func GetTextNodes(tokens *html.Tokenizer) (textNodes []string) {
 			return
 		}
 	}
+}
+
+type HTMLParser struct {
+	TextNodes []string
 }
 
 func NewHTMLParser(r io.Reader) (*HTMLParser, error) {
