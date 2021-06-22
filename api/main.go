@@ -14,7 +14,9 @@ func main() {
 
 	router.GET("/url/*url", URLHandler)
 
-	loggedRouter := handlers.LoggingHandler(os.Stdout, router)
+	var r http.Handler
+	r = handlers.CombinedLoggingHandler(os.Stdout, router)
+	r = handlers.CompressHandler(r)
 
-	log.Fatal(http.ListenAndServe(":8080", loggedRouter))
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
