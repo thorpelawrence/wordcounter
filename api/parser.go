@@ -87,9 +87,10 @@ func (parser *HTMLParser) GetWordCounts() map[string]int {
 	for _, textNode := range parser.TextNodes {
 		for _, word := range strings.Fields(textNode) {
 			normalised := NormaliseString(word)
-			if normalised != "" {
-				counts[normalised]++
+			if normalised == "" {
+				continue
 			}
+			counts[normalised]++
 		}
 	}
 	return counts
