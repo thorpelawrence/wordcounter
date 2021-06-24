@@ -8,3 +8,9 @@ go run .
 curl localhost:8080/url/https://bbc.co.uk
 http localhost:8080/url/https://norvig.com/big.txt
 ```
+
+## Testing
+
+```bash
+go test -cover
+```
