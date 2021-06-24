@@ -11,9 +11,15 @@ import (
 
 func URLHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	url := strings.TrimPrefix(ps.ByName("url"), "/")
+
+	header := w.Header()
+	header.Add("Access-Control-Allow-Origin", "*")
+
 	res, err := http.Get(url)
 	if err != nil {
 		log.Println(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 	defer res.Body.Close()
 
@@ -40,7 +46,7 @@ func URLHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 	wordCounts := parser.GetWordCounts()
 
-	w.Header().Add("Content-Type", "application/json")
+	header.Add("Content-Type", "application/json")
 
 	if err := json.NewEncoder(w).Encode(wordCounts); err != nil {
 		log.Println(err)
