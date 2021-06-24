@@ -1,11 +1,7 @@
 import { useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import CreatableSelect from "react-select/creatable";
-import ResultsViewer, { WordCounts } from "./ResultsViewer";
-
-interface APIResult {
-  [word: string]: number;
-}
+import ResultsViewer from "./ResultsViewer";
 
 const urlToOption = (url: string) => ({
   label: url,
@@ -24,16 +20,6 @@ const WordCounter = () => {
     fetch(apiUrl).then((res) => res.json())
   );
 
-  const wordCounts = useMemo<WordCounts[]>(
-    () =>
-      data &&
-      Object.entries(data as APIResult).map(([word, count]) => ({
-        word,
-        count,
-      })),
-    [data]
-  );
-
   return (
     <>
       <CreatableSelect
@@ -48,7 +34,7 @@ const WordCounter = () => {
       />
       {status === "error" && <h2>Error: {JSON.stringify(error)}</h2>}
       {isFetching ? <h2>Updating {url.value}...</h2> : <h2>{url.value}</h2>}
-      {status === "success" && <ResultsViewer data={wordCounts} />}
+      {status === "success" && <ResultsViewer data={data} />}
     </>
   );
 };

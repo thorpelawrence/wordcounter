@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correct data 1`] = `
+<table
+  role="table"
+>
+  <thead>
+    <tr
+      role="row"
+    >
+      <th
+        colspan="1"
+        role="columnheader"
+        style="cursor: pointer;"
+        title="Toggle SortBy"
+      >
+        Word
+        <span />
+      </th>
+      <th
+        colspan="1"
+        role="columnheader"
+        style="cursor: pointer;"
+        title="Toggle SortBy"
+      >
+        Occurrences
+        <span>
+           🔽
+        </span>
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    role="rowgroup"
+  >
+    <tr
+      role="row"
+    >
+      <td
+        role="cell"
+      >
+        test
+      </td>
+      <td
+        role="cell"
+      >
+        3
+      </td>
+    </tr>
+    <tr
+      role="row"
+    >
+      <td
+        role="cell"
+      >
+        world
+      </td>
+      <td
+        role="cell"
+      >
+        2
+      </td>
+    </tr>
+    <tr
+      role="row"
+    >
+      <td
+        role="cell"
+      >
+        hello
+      </td>
+      <td
+        role="cell"
+      >
+        1
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

@@ -6,7 +6,11 @@ export interface WordCounts {
   count: number;
 }
 
-const ResultsViewer = ({ data }: { data: WordCounts[] }) => {
+interface APIResult {
+  [word: string]: number;
+}
+
+const ResultsViewer = ({ data }: { data: APIResult }) => {
   const columns = useMemo<Column<WordCounts>[]>(
     () => [
       { Header: "Word", accessor: "word" },
@@ -15,12 +19,19 @@ const ResultsViewer = ({ data }: { data: WordCounts[] }) => {
     []
   );
 
+  const wordCounts: WordCounts[] = Object.entries(data).map(
+    ([word, count]) => ({
+      word,
+      count,
+    })
+  );
+
   const sortBy = useMemo(() => [{ id: "count", desc: true }], []);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable(
       {
-        data,
+        data: wordCounts,
         columns,
         initialState: {
           // @ts-ignore
@@ -30,7 +41,7 @@ const ResultsViewer = ({ data }: { data: WordCounts[] }) => {
       useSortBy
     );
 
-  const rowsSlice = rows.slice(0, 100) // TODO optimise, pagination etc instead
+  const rowsSlice = rows.slice(0, 100); // TODO optimise, pagination etc instead
 
   return (
     <table {...getTableProps()}>

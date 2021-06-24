@@ -1,8 +1,17 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import ResultsViewer from "./components/ResultsViewer";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/updating https:\/\/bbc\.co\.uk/i);
-  expect(linkElement).toBeInTheDocument();
+test("renders correct data", async () => {
+  render(
+    <ResultsViewer
+      data={{
+        hello: 1,
+        world: 2,
+        test: 3,
+      }}
+    />
+  );
+  expect(screen.getByText(/hello/)).toBeInTheDocument();
+  expect(screen.getByText(/test/)).toBeInTheDocument();
+  expect(screen.getByRole("table")).toMatchSnapshot();
 });
