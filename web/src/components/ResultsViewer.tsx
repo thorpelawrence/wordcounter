@@ -19,11 +19,13 @@ const ResultsViewer = ({ data }: { data: APIResult }) => {
     []
   );
 
-  const wordCounts: WordCounts[] = Object.entries(data).map(
-    ([word, count]) => ({
-      word,
-      count,
-    })
+  const wordCounts: WordCounts[] = useMemo(
+    () =>
+      Object.entries(data).map(([word, count]) => ({
+        word,
+        count,
+      })),
+    [data]
   );
 
   const sortBy = useMemo(() => [{ id: "count", desc: true }], []);
